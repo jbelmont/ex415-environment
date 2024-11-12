@@ -2,7 +2,7 @@
 Vagrant.configure("2") do |config|
   # Define VM settings
   config.vm.box = "generic/rhel8" # Use "generic/rhel8" for Red Hat-like environment
-  
+
   # Define VM for the Control Node
   config.vm.define "control" do |control|
     control.vm.hostname = "control-node"
@@ -34,5 +34,5 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     # Transfer the control node's SSH public key to the managed node
     sshpass -p vagrant ssh-copy-id -o StrictHostKeyChecking=no -i /home/vagrant/.ssh/id_rsa.pub vagrant@192.168.56.11
-  SHELL, run: "once"
+  SHELL
 end
